@@ -3,6 +3,7 @@ import '../data/produkdata.dart';
 import '../widgets/header_widgets.dart';
 import '../widgets/ui_widget_field.dart';
 import '../widgets/product_card.dart';
+import 'add_product_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,6 +14,12 @@ class _HomePageState extends State<HomePage> {
   void toggleFavorite(int index) {
     setState(() {
       produk[index]["isFavorite"] = !produk[index]["isFavorite"];
+    });
+  }
+
+  void addProduct(Map<String, dynamic> newProduct) {
+    setState(() {
+      produk.add(newProduct);
     });
   }
 
@@ -46,6 +53,17 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => AddProductPage(onAddProduct: addProduct),
+            ),
+          );
+        },
       ),
     );
   }

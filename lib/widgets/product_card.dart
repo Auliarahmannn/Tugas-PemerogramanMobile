@@ -6,6 +6,7 @@ class ProductCard extends StatelessWidget {
   final bool isFavorite;
   final String imageUrl;
   final VoidCallback onFavoritePressed;
+  final String? desc;
 
   ProductCard({
     required this.name,
@@ -13,6 +14,7 @@ class ProductCard extends StatelessWidget {
     required this.isFavorite,
     required this.imageUrl,
     required this.onFavoritePressed,
+    this.desc,
   });
 
   @override
@@ -43,6 +45,13 @@ class ProductCard extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                 SizedBox(height: 5),
                 Text(price, style: TextStyle(color: Colors.grey[700])),
+                if (desc != null) ...[
+                  SizedBox(height: 5),
+                  Text(desc!,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+                ],
                 Align(
                   alignment: Alignment.centerRight,
                   child: IconButton(
